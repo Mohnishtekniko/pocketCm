@@ -1,0 +1,11 @@
+import 'package:flutter/material.dart';
+
+
+class AppColors
+{
+
+
+  static const Color appYellowColor = Color(0xFFFFD600);
+
+
+}
