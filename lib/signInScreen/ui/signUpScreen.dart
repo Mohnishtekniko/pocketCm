@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pocketcrm/utils/API/HttpClient.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/commonMethod.dart';
@@ -12,6 +13,9 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+
+
+  HttpClients httpClients = HttpClients();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,20 +95,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   Widget buttonSection(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: AppColors.appYellowColor,
-          borderRadius: BorderRadius.all(Radius.circular(20))),
-      height: 50,
-      width: double.infinity,
-      child: Center(
-        child: Text(
-          'Sign In',
-          style: TextStyle(
-            color: Color(0xFF121725),
-            fontSize: 16,
-            fontFamily: 'Inter',
-            fontWeight: FontWeight.bold,
+    return InkWell(
+      onTap: (){
+        httpClients.loginApi(username: 'YW0007', password: '12345');
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppColors.appYellowColor,
+            borderRadius: BorderRadius.all(Radius.circular(20))),
+        height: 50,
+        width: double.infinity,
+        child: Center(
+          child: Text(
+            'Sign In',
+            style: TextStyle(
+              color: Color(0xFF121725),
+              fontSize: 16,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),
