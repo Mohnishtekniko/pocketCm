@@ -67,6 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     customTextFormField(
                         BuildContext: context,
+                        maxLines: 1,
                         title: 'Username/phone',
                         controllerr: userNameController,
                         hintText: "Enter Username",
@@ -85,6 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     customTextFormField(
                         BuildContext: context,
+                        maxLines: 1,
                         title: 'Password',
                         controllerr: passwordController,
                         icon: Icon(Icons.visibility_off),

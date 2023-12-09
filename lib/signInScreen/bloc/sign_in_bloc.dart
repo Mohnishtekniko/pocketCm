@@ -48,6 +48,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   Future<void> _launchUrl(Uri url) async {
 
+    mode: LaunchMode.inAppBrowserView;
+
+
+
     print("url for launch iss---------------------->>>>>> $url");
 
     if (!await launchUrl(url)) {
