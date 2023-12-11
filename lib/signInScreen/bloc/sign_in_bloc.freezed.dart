@@ -16,24 +16,28 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignInEvent {
+  BuildContext? get context => throw _privateConstructorUsedError;
   String? get userName => throw _privateConstructorUsedError;
   String? get passWord => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? userName, String? passWord, String? url)
+    required TResult Function(BuildContext? context, String? userName,
+            String? passWord, String? url)
         signInApi,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? userName, String? passWord, String? url)?
+    TResult? Function(BuildContext? context, String? userName, String? passWord,
+            String? url)?
         signInApi,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? userName, String? passWord, String? url)?
+    TResult Function(BuildContext? context, String? userName, String? passWord,
+            String? url)?
         signInApi,
     required TResult orElse(),
   }) =>
@@ -66,7 +70,8 @@ abstract class $SignInEventCopyWith<$Res> {
           SignInEvent value, $Res Function(SignInEvent) then) =
       _$SignInEventCopyWithImpl<$Res, SignInEvent>;
   @useResult
-  $Res call({String? userName, String? passWord, String? url});
+  $Res call(
+      {BuildContext? context, String? userName, String? passWord, String? url});
 }
 
 /// @nodoc
@@ -82,11 +87,16 @@ class _$SignInEventCopyWithImpl<$Res, $Val extends SignInEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? context = freezed,
     Object? userName = freezed,
     Object? passWord = freezed,
     Object? url = freezed,
   }) {
     return _then(_value.copyWith(
+      context: freezed == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext?,
       userName: freezed == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -111,7 +121,8 @@ abstract class _$$SignInApiImplCopyWith<$Res>
       __$$SignInApiImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? userName, String? passWord, String? url});
+  $Res call(
+      {BuildContext? context, String? userName, String? passWord, String? url});
 }
 
 /// @nodoc
@@ -125,11 +136,16 @@ class __$$SignInApiImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? context = freezed,
     Object? userName = freezed,
     Object? passWord = freezed,
     Object? url = freezed,
   }) {
     return _then(_$SignInApiImpl(
+      context: freezed == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext?,
       userName: freezed == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -149,8 +165,10 @@ class __$$SignInApiImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SignInApiImpl implements SignInApi {
-  const _$SignInApiImpl({this.userName, this.passWord, this.url});
+  const _$SignInApiImpl({this.context, this.userName, this.passWord, this.url});
 
+  @override
+  final BuildContext? context;
   @override
   final String? userName;
   @override
@@ -160,7 +178,7 @@ class _$SignInApiImpl implements SignInApi {
 
   @override
   String toString() {
-    return 'SignInEvent.signInApi(userName: $userName, passWord: $passWord, url: $url)';
+    return 'SignInEvent.signInApi(context: $context, userName: $userName, passWord: $passWord, url: $url)';
   }
 
   @override
@@ -168,6 +186,7 @@ class _$SignInApiImpl implements SignInApi {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignInApiImpl &&
+            (identical(other.context, context) || other.context == context) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
             (identical(other.passWord, passWord) ||
@@ -176,7 +195,8 @@ class _$SignInApiImpl implements SignInApi {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userName, passWord, url);
+  int get hashCode =>
+      Object.hash(runtimeType, context, userName, passWord, url);
 
   @JsonKey(ignore: true)
   @override
@@ -187,30 +207,33 @@ class _$SignInApiImpl implements SignInApi {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? userName, String? passWord, String? url)
+    required TResult Function(BuildContext? context, String? userName,
+            String? passWord, String? url)
         signInApi,
   }) {
-    return signInApi(userName, passWord, url);
+    return signInApi(context, userName, passWord, url);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? userName, String? passWord, String? url)?
+    TResult? Function(BuildContext? context, String? userName, String? passWord,
+            String? url)?
         signInApi,
   }) {
-    return signInApi?.call(userName, passWord, url);
+    return signInApi?.call(context, userName, passWord, url);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? userName, String? passWord, String? url)?
+    TResult Function(BuildContext? context, String? userName, String? passWord,
+            String? url)?
         signInApi,
     required TResult orElse(),
   }) {
     if (signInApi != null) {
-      return signInApi(userName, passWord, url);
+      return signInApi(context, userName, passWord, url);
     }
     return orElse();
   }
@@ -246,10 +269,13 @@ class _$SignInApiImpl implements SignInApi {
 
 abstract class SignInApi implements SignInEvent {
   const factory SignInApi(
-      {final String? userName,
+      {final BuildContext? context,
+      final String? userName,
       final String? passWord,
       final String? url}) = _$SignInApiImpl;
 
+  @override
+  BuildContext? get context;
   @override
   String? get userName;
   @override
@@ -264,6 +290,7 @@ abstract class SignInApi implements SignInEvent {
 
 /// @nodoc
 mixin _$SignInState {
+  LoginModel? get loginModel => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -277,7 +304,7 @@ abstract class $SignInStateCopyWith<$Res> {
           SignInState value, $Res Function(SignInState) then) =
       _$SignInStateCopyWithImpl<$Res, SignInState>;
   @useResult
-  $Res call({String? url});
+  $Res call({LoginModel? loginModel, String? url});
 }
 
 /// @nodoc
@@ -293,9 +320,14 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? loginModel = freezed,
     Object? url = freezed,
   }) {
     return _then(_value.copyWith(
+      loginModel: freezed == loginModel
+          ? _value.loginModel
+          : loginModel // ignore: cast_nullable_to_non_nullable
+              as LoginModel?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -312,7 +344,7 @@ abstract class _$$SignInStateImplCopyWith<$Res>
       __$$SignInStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? url});
+  $Res call({LoginModel? loginModel, String? url});
 }
 
 /// @nodoc
@@ -326,9 +358,14 @@ class __$$SignInStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? loginModel = freezed,
     Object? url = freezed,
   }) {
     return _then(_$SignInStateImpl(
+      loginModel: freezed == loginModel
+          ? _value.loginModel
+          : loginModel // ignore: cast_nullable_to_non_nullable
+              as LoginModel?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -340,14 +377,16 @@ class __$$SignInStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SignInStateImpl implements _SignInState {
-  const _$SignInStateImpl({this.url});
+  const _$SignInStateImpl({this.loginModel, this.url});
 
+  @override
+  final LoginModel? loginModel;
   @override
   final String? url;
 
   @override
   String toString() {
-    return 'SignInState(url: $url)';
+    return 'SignInState(loginModel: $loginModel, url: $url)';
   }
 
   @override
@@ -355,11 +394,13 @@ class _$SignInStateImpl implements _SignInState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignInStateImpl &&
+            (identical(other.loginModel, loginModel) ||
+                other.loginModel == loginModel) &&
             (identical(other.url, url) || other.url == url));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, url);
+  int get hashCode => Object.hash(runtimeType, loginModel, url);
 
   @JsonKey(ignore: true)
   @override
@@ -369,8 +410,11 @@ class _$SignInStateImpl implements _SignInState {
 }
 
 abstract class _SignInState implements SignInState {
-  const factory _SignInState({final String? url}) = _$SignInStateImpl;
+  const factory _SignInState(
+      {final LoginModel? loginModel, final String? url}) = _$SignInStateImpl;
 
+  @override
+  LoginModel? get loginModel;
   @override
   String? get url;
   @override

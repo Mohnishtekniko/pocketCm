@@ -110,6 +110,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       onTap: () {
 
         bloc.add(SignInApi(
+          context: context ,
             userName:userNameController.text.toString(),
             passWord: passwordController.text.toString()
            )
